@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../style/colors/colors.json';
 
 import 'dart:ui';
 
 class MainPage extends StatelessWidget {
+ 
 
   const MainPage({super.key});
 

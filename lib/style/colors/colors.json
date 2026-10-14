@@ -1,0 +1,9 @@
+{
+"primary": "#28334B",
+
+"button":{
+    "positive": "#3FC548",
+    "negative": "#FF0000"
+}
+
+}

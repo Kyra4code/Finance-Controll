@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import './pages/main_page.dart';
-import './pages/month_manager.dart';
+import 'pages/manager_money/month_manager.dart';
 
 main() {
   // runApp(const MaterialApp(home: MainPage())); /*Tela principal */
