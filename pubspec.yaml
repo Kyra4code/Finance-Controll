@@ -26,7 +26,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: false
-  image_path: "lib/assets/logo_app/banco-movel.png"
+  image_path: "lib/assets/img/logo_app/banco-movel.png"
 
 
 flutter:
