@@ -55,7 +55,8 @@ class EditExpenses extends StatelessWidget {
 
                 CustomTextform(
                   title: "Nome", 
-                  subTitle: "Nome do item"
+                  subTitle: "Nome do item",
+                  keyboardType: TextInputType.text,
 
                 ),
 
@@ -63,7 +64,8 @@ class EditExpenses extends StatelessWidget {
 
                 CustomTextform(
                   title: "Gastos", 
-                  subTitle: "Ex: 200; 10,50 e etc"
+                  subTitle: "Ex: 200; 10,50 e etc",
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
                 ),
 
                 const SizedBox(height: 16),

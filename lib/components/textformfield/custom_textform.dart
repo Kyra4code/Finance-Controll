@@ -10,12 +10,13 @@ class CustomTextform extends StatelessWidget{
 
   final String title;
   final String subTitle;
+  final TextInputType keyboardType;
 
-
-  const CustomTextform({
+  CustomTextform({
     super.key,
     required this.title,
-    required this.subTitle
+    required this.subTitle,
+    this.keyboardType = const TextInputType.numberWithOptions(decimal: true)
 
   });
 
@@ -25,7 +26,7 @@ class CustomTextform extends StatelessWidget{
     return TextFormField(
       style: const TextStyle(color: ColorsApp.textColor),
       cursorColor: ColorsApp.color_green,
-      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      keyboardType: keyboardType,
       // aceita só dígitos, 1 separador (vírgula ou ponto) e até 2 casas decimais
       inputFormatters: [
         FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
