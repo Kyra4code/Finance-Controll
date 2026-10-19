@@ -1,6 +1,5 @@
 //Importando pacotes
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 //Importando telas
 import './manager_money/month_manager.dart';
@@ -11,6 +10,9 @@ import './settings/settings_page.dart';
 //Importando componentes
 import '../components/custom_floatingactionbutton.dart';
 import '../components/py_chart/custom_pychart.dart';
+
+//Importando arquivos de estilizacao
+import '../assets/style/colors/colors_app.dart';
 
 
 class MainPage extends StatelessWidget {
@@ -26,11 +28,29 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: ColorsApp.color_background,
+
       appBar: AppBar(
-        title: Text("Home"),
+
+        backgroundColor: ColorsApp.color_background,
+
+        title: Center(
+          child:Text(
+            "Home",
+            style:TextStyle(
+              color: ColorsApp.textColor
+            )
+          )),
+
+        iconTheme: IconThemeData(
+          color: ColorsApp.textColor
+        ), 
+        
       ),
 
       drawer: Drawer(
+        backgroundColor: ColorsApp.color_background,
+        surfaceTintColor: ColorsApp.textColor,
 
         child: ListView(
 
@@ -44,7 +64,12 @@ class MainPage extends StatelessWidget {
 
               child: Center(
 
-                child: Text("Selecione uma pagina"),
+                child: Text(
+                  "Selecione uma pagina",
+                  style: TextStyle(
+                    color:ColorsApp.textColor
+                  ),
+                ),
 
               )
             ),
@@ -53,10 +78,16 @@ class MainPage extends StatelessWidget {
             ListTile(
 
               leading: Icon(
-                Icons.calendar_month
+                Icons.calendar_month,
+                color:ColorsApp.textColor 
               ),
 
-              title: Text("Gerenciamento de Gastos"),
+              title: Text(
+                "Gerenciamento de Gastos",
+                style: TextStyle(
+                  color: ColorsApp.textColor
+                ),
+                ),
 
               onTap: ()=>{
                 Navigator.of(context).push(
@@ -70,10 +101,16 @@ class MainPage extends StatelessWidget {
             ListTile(
 
               leading: Icon(
-                Icons.money_off_rounded
+                Icons.money_off_rounded,
+                color:ColorsApp.textColor ,
               ),
 
-              title: Text("Controle de dividas"),
+              title: Text(
+                "Controle de dividas",
+                style: TextStyle(
+                  color: ColorsApp.textColor
+                ),
+              ),
 
               onTap: ()=>{
                 Navigator.of(context).push(
@@ -89,10 +126,16 @@ class MainPage extends StatelessWidget {
             ListTile(
 
               leading: Icon(
-                Icons.settings
+                Icons.settings,
+                color:ColorsApp.textColor 
               ),
 
-              title: Text("Configurações"),
+              title: Text(
+                "Configurações",
+                  style: TextStyle(
+                  color: ColorsApp.textColor
+                ),
+              ),
 
               onTap: ()=>{
                 Navigator.of(context).push(
@@ -119,7 +162,7 @@ class MainPage extends StatelessWidget {
               Text(
                 "Controle financeiro mensal",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: ColorsApp.textColor,
                   fontSize: 29,
                   fontWeight: FontWeight(bold_style) 
                 ),
@@ -132,15 +175,15 @@ class MainPage extends StatelessWidget {
                   PyChartItem(
                     title: "Sobra do mes", 
                     value: total_wage, 
-                    color: Colors.green, 
-                    textColor: Colors.black
+                    color: ColorsApp.color_green, 
+                    textColor: ColorsApp.textColor
                   ),
 
                   PyChartItem(
                     title: "Gastos no mes", 
                     value: total_expenses, 
-                    color: Colors.red, 
-                    textColor: Colors.black
+                    color: ColorsApp.red, 
+                    textColor: ColorsApp.textColor
                   )
 
                 ],

@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 //Importando componentes
 import 'package:finance_controll/components/cards/card_moneyControll.dart';
 
+//Importando cores
+import 'package:finance_controll/assets/style/colors/colors_app.dart';
+
 class MoneyControll extends StatefulWidget {
 
   const MoneyControll({super.key});
@@ -41,8 +44,25 @@ class _MoneyControllState extends State<MoneyControll>{
   Widget build(BuildContext context){
 
     return Scaffold(
+
+      backgroundColor: ColorsApp.color_background,
+
       appBar: AppBar(
-        title: Text("Voltar")
+
+        backgroundColor: ColorsApp.color_background,
+
+        title: Center(
+          child:Text(
+            "Voltar",
+            style:TextStyle(
+              color: ColorsApp.textColor
+            )
+        )),
+
+        iconTheme: IconThemeData(
+          color: ColorsApp.textColor
+        ), 
+        
       ),
 
       body: SingleChildScrollView(
@@ -51,6 +71,9 @@ class _MoneyControllState extends State<MoneyControll>{
           children: [
 
             DropdownMenu(
+                textStyle: TextStyle(
+                  color: ColorsApp.textColor
+                ),
                 selectOnly: true,
                 dropdownMenuEntries: months, 
                 initialSelection: months[0].value, 

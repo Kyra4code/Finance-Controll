@@ -1,6 +1,11 @@
-// import 'dart:ffi';
-
+//Importando pacotes
 import 'package:flutter/material.dart';
+
+//Importando componentes
+import '../../components/textformfield/custom_textform.dart';
+
+//Importando cores
+import '../../assets/style/colors/colors_app.dart';
 
 class AddExpenses extends StatelessWidget {
   const AddExpenses({super.key});
@@ -9,10 +14,24 @@ class AddExpenses extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      backgroundColor: ColorsApp.color_background,
+
       appBar: AppBar(
 
-        title: const Text('Nova despesa'),
+        backgroundColor: ColorsApp.color_background,
 
+        title: Center(
+          child:Text(
+            "Voltar",
+            style:TextStyle(
+              color: ColorsApp.textColor
+            )
+          )),
+
+        iconTheme: IconThemeData(
+          color: ColorsApp.textColor
+        ), 
+        
       ),
 
       body: Center(
@@ -31,38 +50,17 @@ class AddExpenses extends StatelessWidget {
 
               children: [
 
-                TextFormField(
-                  textInputAction: TextInputAction.next,
-
-                  textCapitalization: TextCapitalization.sentences,
-
-                  decoration: const InputDecoration(
-
-                    icon: Icon(Icons.shopping_bag_outlined),
-
-                    hintText: 'Nome do item',
-
-                    labelText: 'Nome',
-                  ),
+                CustomTextform(
+                  title: "Nome", 
+                  subTitle: "Nome do item"
 
                 ),
 
                 const SizedBox(height: 16),
 
-                TextFormField(
-
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
-
-                  decoration: const InputDecoration(
-
-                    icon: Icon(Icons.attach_money),
-
-                    hintText: 'Apenas número (exemplo: 200; 10,50)',
-
-                    labelText: 'Gastos *',
-
-                  ),
-
+                CustomTextform(
+                  title: "Gastos", 
+                  subTitle: "Ex: 200; 10,50 e etc"
                 ),
 
                 const SizedBox(height: 16),

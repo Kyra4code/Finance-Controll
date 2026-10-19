@@ -1,5 +1,9 @@
+//Importando pacotes
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+
+//Importando cores
+import '../../../assets/style/colors/colors_app.dart';
 
 class CustomCard extends StatelessWidget{
 
@@ -24,6 +28,14 @@ class CustomCard extends StatelessWidget{
 
       return Card(
 
+        color: ColorsApp.card,
+
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(color: ColorsApp.cardBorder)
+        ),
+
+
         clipBehavior: Clip.hardEdge,
 
         child: InkWell(
@@ -45,9 +57,19 @@ class CustomCard extends StatelessWidget{
 
                   leading: Icon(icon),
 
-                  title: Text(title),
+                  title: Text(
+                    title,
+                    style: TextStyle(
+                      color: ColorsApp.textColor
+                    ),
+                  ),
 
-                  subtitle: Text("Data da compra: $subtitle"),
+                  subtitle: Text(
+                    "Data da compra: $subtitle",
+                    style: TextStyle(
+                      color: ColorsApp.textColor
+                    ),
+                  ),
 
                 ),
 

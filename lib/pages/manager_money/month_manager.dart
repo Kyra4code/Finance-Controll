@@ -1,9 +1,14 @@
+//Importando pacotes
 import 'package:flutter/material.dart';
 
+//Importando telas
 import './add_expenses.dart';
 import './edit_expenses.dart';
 import '../../components/cards/custom_card.dart';
 import '../../components/custom_floatingactionbutton.dart';
+
+//Importando cores
+import '../../assets/style/colors/colors_app.dart';
 
 
 class MonthManager extends StatelessWidget {
@@ -33,16 +38,25 @@ class MonthManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      backgroundColor: ColorsApp.color_background,
+
       appBar: AppBar(
 
-        leading: IconButton(
-          onPressed: ()=> {
-            Navigator.of(context).pop()
-          },
-          icon: Icon(Icons.arrow_back),
+        backgroundColor: ColorsApp.color_background,
 
-        ),
-        title: const Text('Voltar')
+        title: Center(
+          child:Text(
+            "Voltar",
+            style:TextStyle(
+              color: ColorsApp.textColor
+            )
+          )),
+
+        iconTheme: IconThemeData(
+          color: ColorsApp.textColor
+        ), 
+        
       ),
 
       body:SingleChildScrollView(
@@ -55,6 +69,9 @@ class MonthManager extends StatelessWidget {
             children:[
 
               DropdownMenu(
+                textStyle: TextStyle(
+                  color: ColorsApp.textColor
+                ),
                 selectOnly: true,
                 dropdownMenuEntries: months, 
                 initialSelection: months[0].value, 

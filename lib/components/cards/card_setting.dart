@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
+//Importando cores
+import '../../../assets/style/colors/colors_app.dart';
 
 class CardSetting extends StatelessWidget {
   const CardSetting({
@@ -24,7 +26,12 @@ class CardSetting extends StatelessWidget {
 
     return Card(
 
-      clipBehavior: Clip.hardEdge,
+      color: ColorsApp.card,
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: ColorsApp.cardBorder)
+      ),
 
       child: InkWell(
 
@@ -40,9 +47,16 @@ class CardSetting extends StatelessWidget {
             children: [
 
               SizedBox(height: 20),
+
               ListTile(
-                leading: icon_select == null ? Icon(Icons.settings) : icon_select,
-                title: Text(title),
+                leading: icon_select,
+                title: Text(
+                  title,
+                  style: TextStyle(
+                    color: ColorsApp.textColor
+
+                  ),
+                ),
               ),
               
 

@@ -6,17 +6,38 @@ import 'package:flutter/material.dart';
 //Importando componentes
 import '../../components/cards/card_setting.dart';
 
+//Importando cores
+import '../../assets/style/colors/colors_app.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      backgroundColor: ColorsApp.color_background,
+
       appBar: AppBar(
-        title: Text("Voltar"),
+
+        backgroundColor: ColorsApp.color_background,
+
+        title: Center(
+          child:Text(
+            "Voltar",
+            style:TextStyle(
+              color: ColorsApp.textColor
+            )
+        )),
+
+        iconTheme: IconThemeData(
+          color: ColorsApp.textColor
+        ), 
+        
       ),
       
       body: Center(
+
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,

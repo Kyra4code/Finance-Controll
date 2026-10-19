@@ -1,7 +1,14 @@
+//Importando pacotes
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class CustomFloatingactionbutton extends StatelessWidget{
+//Importando cores
+import '../assets/style/colors/colors_app.dart';
+
+
+
+class CustomFloatingactionbutton extends StatefulWidget{
 
    const CustomFloatingactionbutton({
     super.key,
@@ -16,24 +23,32 @@ class CustomFloatingactionbutton extends StatelessWidget{
   final AsyncCallback? onPressed;
   final String tooltip; 
 
+  @override
+  State<CustomFloatingactionbutton> createState() => _CustomFloatingactionbuttonState();
+}
 
+class _CustomFloatingactionbuttonState extends State<CustomFloatingactionbutton> {
   @override
 
   Widget build(BuildContext context) {
 
-    final callback = onPressed;
+    final callback = widget.onPressed;
     
     return FloatingActionButton(
+
         onPressed: callback == null ? null : () => callback(),
 
-        backgroundColor: Color.fromRGBO(76, 175, 80,1),
+        backgroundColor: ColorsApp.color_green,
 
-        tooltip: tooltip,
+        tooltip: widget.tooltip,
 
         child: Icon(Icons.add),
+
+        hoverElevation: 20,
+
+        foregroundColor: ColorsApp.textColor,
 
     );
 
   }
-
 }
