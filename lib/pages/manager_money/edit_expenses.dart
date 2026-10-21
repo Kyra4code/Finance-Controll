@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //Importando compontentes
 import '../../components/textformfield/custom_textform.dart';
+import '../../components/buttons/customButton.dart';
 
 //Importando cores
 import '../../assets/style/colors/colors_app.dart';
@@ -96,19 +97,10 @@ class EditExpenses extends StatelessWidget {
                 
                 const SizedBox(height:50),
 
-                ElevatedButton(
-                  onPressed: null, 
-
-                  style: ButtonStyle(
-                    padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
-                    backgroundColor: WidgetStatePropertyAll<Color?>(Colors.green),
-                    textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-                    minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),
-                    
-                    ),
-
-                  child: const Text("Atualizar"),
-                ),
+                CustomButton(
+                  stateTrue: true,
+                  title: "",
+                  ),
 
                 const SizedBox(height: 18),
 

@@ -28,9 +28,9 @@ class CustomTextform extends StatelessWidget{
       cursorColor: ColorsApp.color_green,
       keyboardType: keyboardType,
       // aceita só dígitos, 1 separador (vírgula ou ponto) e até 2 casas decimais
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
-      ],
+      // inputFormatters: [
+      //   FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
+      // ],
       validator: (value) {
         final number = double.tryParse((value ?? '').replaceAll(',', '.'));
         if (number == null || number <= 0) return 'Informe um valor válido';
