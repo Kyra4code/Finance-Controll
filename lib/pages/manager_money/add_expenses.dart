@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 //Importando componentes
-import '../../components/textformfield/custom_textform.dart';
+import 'package:finance_controll/components/textformfield/custom_textform.dart';
+import 'package:finance_controll/components/buttons/customButton.dart';
 
 //Importando cores
 import '../../assets/style/colors/colors_app.dart';
@@ -54,6 +55,7 @@ class AddExpenses extends StatelessWidget {
                   title: "Nome", 
                   subTitle: "Nome do item",
                   keyboardType: TextInputType.text,
+                  icons: Icon(Icons.shopping_bag),
                 ),
 
                 const SizedBox(height: 16),
@@ -88,23 +90,12 @@ class AddExpenses extends StatelessWidget {
                   child: const Text("Selecionar data")
                 ),
 
-                
-                
                 const SizedBox(height: 70),
 
-                ElevatedButton(
-                  onPressed: null, 
-
-                  style: ButtonStyle(
-                    padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
-                    backgroundColor: WidgetStatePropertyAll<Color?>(Colors.green),
-                    textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-                    minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),
-                    
-                    ),
-
-                  child: const Text("Adicionar"),
-                ),
+                CustomButton(
+                  stateTrue: true, 
+                  title: "Adicionar"
+                )
 
               ],
             ),

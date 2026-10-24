@@ -9,18 +9,16 @@ class CardSetting extends StatelessWidget {
   const CardSetting({
     super.key,
     required this.title,
-    this.icon = Icons.settings,
+    this.icon = const IconData(0),
     this.onPressed,
   });
 
   final AsyncCallback? onPressed;
-  final IconData icon;
+  final IconData? icon;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-
-    final Icon icon_select = Icon(icon);
 
     final VoidCallback? callback = onPressed;
 
@@ -49,7 +47,7 @@ class CardSetting extends StatelessWidget {
               SizedBox(height: 20),
 
               ListTile(
-                leading: icon_select,
+                leading: Icon(icon, color: ColorsApp.textColor,),
                 title: Text(
                   title,
                   style: TextStyle(

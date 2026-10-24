@@ -11,12 +11,14 @@ class CustomTextform extends StatelessWidget{
   final String title;
   final String subTitle;
   final TextInputType keyboardType;
+  final Icon? icons;
 
   CustomTextform({
     super.key,
     required this.title,
     required this.subTitle,
-    this.keyboardType = const TextInputType.numberWithOptions(decimal: true)
+    this.keyboardType = const TextInputType.numberWithOptions(decimal: true),
+    this.icons = const Icon(Icons.attach_money)
 
   });
 
@@ -27,15 +29,21 @@ class CustomTextform extends StatelessWidget{
       style: const TextStyle(color: ColorsApp.textColor),
       cursorColor: ColorsApp.color_green,
       keyboardType: keyboardType,
+
       // aceita só dígitos, 1 separador (vírgula ou ponto) e até 2 casas decimais
-      // inputFormatters: [
-      //   FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
-      // ],
+      inputFormatters: [
+        
+        if(keyboardType == TextInputType.numberWithOptions(decimal: true))
+        FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
+
+      ],
+
       validator: (value) {
         final number = double.tryParse((value ?? '').replaceAll(',', '.'));
         if (number == null || number <= 0) return 'Informe um valor válido';
         return null;
       },
+      
       decoration: InputDecoration(
         labelText: title,
         labelStyle: TextStyle(color: ColorsApp.textMuted),
@@ -44,7 +52,7 @@ class CustomTextform extends StatelessWidget{
         hintStyle: TextStyle(color: ColorsApp.textMuted),
         errorStyle: TextStyle(color: ColorsApp.red),
 
-        prefixIcon: Icon(Icons.attach_money),
+        prefixIcon: icons,
         prefixIconColor: ColorsApp.textMuted,
 
         filled: true,
@@ -54,22 +62,27 @@ class CustomTextform extends StatelessWidget{
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
+
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: ColorsApp.cardBorder),
         ),
+
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: ColorsApp.color_green, width: 2),
         ),
+
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: ColorsApp.red),
         ),
+
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: ColorsApp.red, width: 2),
         ),
+        
       ),
     );
   }

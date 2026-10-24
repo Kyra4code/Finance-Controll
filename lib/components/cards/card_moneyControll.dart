@@ -47,6 +47,7 @@ class _CardMoneyControllState extends State<CardMoneyControll> {
           child: Row(
 
             mainAxisAlignment: MainAxisAlignment.center,
+
             children: [
 
               Checkbox(

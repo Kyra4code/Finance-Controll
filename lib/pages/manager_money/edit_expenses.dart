@@ -58,7 +58,7 @@ class EditExpenses extends StatelessWidget {
                   title: "Nome", 
                   subTitle: "Nome do item",
                   keyboardType: TextInputType.text,
-
+                  icons: Icon(Icons.shopping_bag),
                 ),
 
                 const SizedBox(height: 16),
@@ -99,24 +99,15 @@ class EditExpenses extends StatelessWidget {
 
                 CustomButton(
                   stateTrue: true,
-                  title: "",
+                  title: "Adicionar",
                   ),
 
                 const SizedBox(height: 18),
 
-                ElevatedButton(
-                  onPressed: null, 
-
-                  style: ButtonStyle(
-                    padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
-                    backgroundColor: WidgetStatePropertyAll<Color?>(const Color.fromARGB(255, 230, 20, 20)),
-                    textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-                    minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),
-                    
-                    ),
-
-                  child: const Text("Excluir"),
-                ),
+                CustomButton(
+                  stateTrue: false, 
+                  title: "Excluir"
+                )
 
               ],
             ),

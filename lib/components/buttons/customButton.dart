@@ -19,24 +19,25 @@ class CustomButton extends StatelessWidget {
 
   Widget build(BuildContext context){
 
+    return ElevatedButton(
+      onPressed: null, 
 
-    return Center(
-      child: ElevatedButton(
-        onPressed: null, 
+      style: ButtonStyle(
+        padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
 
-        style: ButtonStyle(
-          padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
+        backgroundColor: stateTrue == true? 
+        WidgetStatePropertyAll<Color?>(ColorsApp.color_green):
+        WidgetStatePropertyAll<Color?>(ColorsApp.red),
 
-          backgroundColor: stateTrue == true? 
-          WidgetStatePropertyAll<Color?>(ColorsApp.color_green):
-          WidgetStatePropertyAll<Color?>(ColorsApp.red),
-
-          textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
-          minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),   
-        ),
-
-        child: const Text(""),
+        textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: ColorsApp.textColor)),
+        minimumSize: WidgetStatePropertyAll(Size(double.infinity, 55)),   
       ),
+
+      child: Text(
+        title,
+        style: TextStyle(color: ColorsApp.textColor),
+      ),
+
     );
   }
 }

@@ -55,7 +55,7 @@ class CustomCard extends StatelessWidget{
 
                 ListTile(
 
-                  leading: Icon(icon),
+                  leading: Icon(icon, color: ColorsApp.textColor),
 
                   title: Text(
                     title,

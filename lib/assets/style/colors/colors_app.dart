@@ -9,7 +9,7 @@ class ColorsApp{
   static const Color card = Color(0xFF34415F);
   static const Color cardBorder = Color(0xFF44547A);  
   static const Color color_green = Color(0xFF3FC548);
-  static const Color red = Color(0xFFFF6B6B); 
+  static const Color red = Color.fromARGB(255, 235, 52, 52); 
   static const Color textMuted = Color(0xFFA8B0C2);
 
 
