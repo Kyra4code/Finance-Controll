@@ -1,0 +1,23 @@
+{
+    "flutter":{
+        "platforms":{
+            "android":{
+                "default":{
+                    "projectId":"database-money-control",
+                    "appId":"1:49491607299:android:18d048ee7da4e6b3ac3336",
+                    "fileOutput":"android/app/google-services.json"}
+            },
+        "dart":{
+            "lib/firebase_options.dart":{
+                "projectId":"database-money-control",
+                "configurations":{
+                    "android":"1:49491607299:android:18d048ee7da4e6b3ac3336",
+                    "ios":"1:49491607299:ios:a4c557167be21bf9ac3336",
+                    "macos":"1:49491607299:ios:a4c557167be21bf9ac3336",
+                    "web":"1:49491607299:web:afef619b3904fa21ac3336",
+                    "windows":"1:49491607299:web:2d9c1b19e51f35d4ac3336"}
+                }
+            }
+        }
+    }
+}

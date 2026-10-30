@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "49491607299",
+    "firebase_url": "https://database-money-control-default-rtdb.firebaseio.com",
+    "project_id": "database-money-control",
+    "storage_bucket": "database-money-control.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49491607299:android:18d048ee7da4e6b3ac3336",
+        "android_client_info": {
+          "package_name": "com.example.finance_controll"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_3kpO4yx7N4rFzTyX4njG4mBUXDM-C38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -200,7 +200,7 @@ class MainPage extends StatelessWidget {
       floatingActionButton: CustomFloatingactionbutton(
         onPressed: ()=> 
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context)=> const AddExpenses())
+            MaterialPageRoute(builder: (context)=> AddExpenses())
           )
       )
     );

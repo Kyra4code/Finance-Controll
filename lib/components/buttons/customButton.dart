@@ -8,19 +8,22 @@ class CustomButton extends StatelessWidget {
 
   final bool stateTrue;
   final String title;
+  final VoidCallback? onPress;
 
   //Arrumar dps <---------------------
 
   const CustomButton({
     super.key,
     required this.stateTrue,
-    required this.title
+    required this.title,
+    this.onPress
   });
 
   Widget build(BuildContext context){
 
     return ElevatedButton(
-      onPressed: null, 
+      onPressed: onPress,
+
 
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(EdgeInsets.all(20.0)),
