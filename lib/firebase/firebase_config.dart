@@ -6,6 +6,12 @@ final FirebaseApp firebaseApp = Firebase.app();
 
 class Firebase_config {
 
+  Stream<DatabaseEvent> userStream(String uid) =>
+    rtdb.ref('users/$uid').onValue;
+
+  Stream<DatabaseEvent> expenseStream(String uid) =>
+    rtdb.ref('gastos/$uid').onValue;
+
   final FirebaseDatabase rtdb = FirebaseDatabase.instanceFor(
     app: firebaseApp,
     databaseURL: 'https://database-money-control-default-rtdb.firebaseio.com/',

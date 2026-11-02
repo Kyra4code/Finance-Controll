@@ -29,19 +29,23 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
-  double totalExpenses = 400;
+  double totalExpenses = 0;
   double totalWage = 0;
 
   final User? user_data = FirebaseAuth.instance.currentUser;
 
-   late final Stream<DatabaseEvent> _dataStream;
+  late final Stream<DatabaseEvent> _userStream;
+
+  late final Stream<DatabaseEvent> _expenseStream;
 
   @override
   void initState() {
     super.initState();
 
-    _dataStream = Firebase_config().rtdb.ref().onValue;
-    
+    _userStream = Firebase_config().userStream(user_data!.uid);
+
+    _expenseStream = Firebase_config().userStream(user_data!.uid);
+
     _loadWage();
     _loadExpenses();
   }
@@ -75,7 +79,7 @@ class _MainPageState extends State<MainPage> {
 
       final value = entry.value;
       if (value is! Map) continue;
-      soma = double.tryParse(value['gasto'].toString()) ?? 0;
+      soma += double.tryParse(value['gasto'].toString()) ?? 0;
     }
 
     if (!mounted) return;
@@ -231,24 +235,40 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 5),
 
             StreamBuilder(
-              stream: _dataStream, 
+              stream: _expenseStream, 
               builder: (context, snapshot){
-                return CustomPyChart(
-                  items: [
-                    PyChartItem(
-                      title: "${totalWage.toStringAsFixed(2)} R\$",
-                      value: totalWage,
-                      color: ColorsApp.color_green,
-                      textColor: ColorsApp.textColor,
-                    ),
-                    PyChartItem(
-                      title: '${totalExpenses.toStringAsFixed(2)} R\$',
-                      value: totalExpenses,
-                      color: ColorsApp.red,
-                      textColor: ColorsApp.textColor,
-                    )
-                  ],
-                );
+                return StreamBuilder(
+                  stream: _userStream, 
+                  builder: (context, snap){
+
+                    _loadExpenses();
+
+                    if (snapshot.connectionState == ConnectionState.waiting || snap.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (snapshot.hasError || snap.hasError) {
+                      return Text('Erro: ${snapshot.error}');
+                    }
+
+                    final rest = totalWage - totalExpenses;
+
+                    return CustomPyChart(
+                      items: [
+                        PyChartItem(
+                          title: "${rest.toStringAsFixed(2)} R\$",
+                          value: totalWage,
+                          color: ColorsApp.color_green,
+                          textColor: ColorsApp.textColor,
+                        ),
+                        PyChartItem(
+                          title: '${totalExpenses.toStringAsFixed(2)} R\$',
+                          value: totalExpenses,
+                          color: ColorsApp.red,
+                          textColor: ColorsApp.textColor,
+                        )
+                      ],
+                    );
+                });
               })
           ],
 
