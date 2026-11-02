@@ -47,7 +47,6 @@ class _MonthManagerState extends State<MonthManager> {
 
   String selectedMonth = DateTime.now().month.toString();
 
-
   late final Stream<DatabaseEvent> _gastosStream;
 
   void initState() {

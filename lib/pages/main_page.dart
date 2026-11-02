@@ -1,5 +1,9 @@
 //Importando pacotes
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:finance_controll/firebase/firebase_config.dart';
+
 
 //Importando telas
 import './manager_money/month_manager.dart';
@@ -15,13 +19,69 @@ import '../components/py_chart/custom_pychart.dart';
 import '../assets/style/colors/colors_app.dart';
 
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
 
-  final double total_expenses = 400;
+  MainPage({super.key});
 
-  final double total_wage = 1049.98;
- 
-  const MainPage({super.key});
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+
+  double totalExpenses = 400;
+  double totalWage = 0;
+
+  final User? user_data = FirebaseAuth.instance.currentUser;
+
+   late final Stream<DatabaseEvent> _dataStream;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _dataStream = Firebase_config().rtdb.ref().onValue;
+    
+    _loadWage();
+    _loadExpenses();
+  }
+
+  Future<void> _loadWage()async{
+
+    final DataSnapshot? data = await Firebase_config().getData_User(user_data!.uid);
+
+    final raw = data?.value;
+
+    if (raw is! Map) return;
+
+    final wage = (raw['salario'] as num?)?.toDouble() ?? 0;
+
+    if (!mounted) return;
+    setState(() => totalWage = wage);
+
+  }
+
+  Future<void> _loadExpenses()async{
+
+     final DataSnapshot? data = await Firebase_config().getData_expenses(user_data!.uid);
+
+     final raw = data?.value;
+
+     if (raw is! Map) return;
+
+     double soma = 0;
+
+    for(final entry in raw.entries){
+
+      final value = entry.value;
+      if (value is! Map) continue;
+      soma = double.tryParse(value['gasto'].toString()) ?? 0;
+    }
+
+    if (!mounted) return;
+    setState(() => totalExpenses = soma);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,48 +219,37 @@ class MainPage extends StatelessWidget {
 
           children: [
 
-              // Text(
-              //   "Controle financeiro mensal",
-              //   style: TextStyle(
-              //     color: ColorsApp.textColor,
-              //     fontSize: 29,
-              //     fontWeight: FontWeight(bold_style) 
-              //   ),
-              // ),
-            
-              SizedBox(height: 5),
-
-              // CustomPyChart(
-              //   items: [
-              //     PyChartItem(
-              //       title: "${total_wage.toStringAsFixed(2)} R\$",
-              //       value: total_wage,
-              //       color: ColorsApp.color_green,
-              //       textColor: ColorsApp.textColor,
-              //     ),
-
-              //     PyChartItem(
-              //       title: '${total_expenses.toStringAsFixed(2)} R\$',
-              //       value: total_expenses,
-              //       color: ColorsApp.red,
-              //       textColor: ColorsApp.textColor,
-              //     )
-
-              //   ],
-
-              // ),
-
-              Text(
-                "EM BREVE...",
-                style: TextStyle(
-                  color: ColorsApp.textColor,
-                  fontSize: 49,
-                  fontWeight: FontWeight(1000) 
-                ),
+            Text(
+              "Controle financeiro mensal",
+              style: TextStyle(
+                color: ColorsApp.textColor,
+                fontSize: 29,
+                fontWeight: FontWeight(1000) 
               ),
-
+            ),
             
+            SizedBox(height: 5),
 
+            StreamBuilder(
+              stream: _dataStream, 
+              builder: (context, snapshot){
+                return CustomPyChart(
+                  items: [
+                    PyChartItem(
+                      title: "${totalWage.toStringAsFixed(2)} R\$",
+                      value: totalWage,
+                      color: ColorsApp.color_green,
+                      textColor: ColorsApp.textColor,
+                    ),
+                    PyChartItem(
+                      title: '${totalExpenses.toStringAsFixed(2)} R\$',
+                      value: totalExpenses,
+                      color: ColorsApp.red,
+                      textColor: ColorsApp.textColor,
+                    )
+                  ],
+                );
+              })
           ],
 
         ) 

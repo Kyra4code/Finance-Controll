@@ -11,9 +11,9 @@ class Firebase_config {
     databaseURL: 'https://database-money-control-default-rtdb.firebaseio.com/',
   );
 
-  Future<DataSnapshot?> getData_User(String? uid) async{
+  Future<DataSnapshot?> getData_User(String uid) async{
 
-    DatabaseReference ref = rtdb.ref("/users/$uid");
+    final ref = rtdb.ref("/users/$uid");
 
     DataSnapshot data_user = await ref.get();
 
