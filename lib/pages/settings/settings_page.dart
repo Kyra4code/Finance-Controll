@@ -43,26 +43,36 @@ class SettingsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            CardSetting(
-              title: "Usuario",
-              icon: Icons.person,
+
+            // CardSetting(
+            //   title: "Usuario",
+            //   icon: Icons.person,
               
-            ),
+            // ),
 
-            SizedBox(height: 28),
+            // SizedBox(height: 28),
 
-            CardSetting(
-              title: "Fianceiro",
-              icon: Icons.monetization_on,
+            // CardSetting(
+            //   title: "Fianceiro",
+            //   icon: Icons.monetization_on,
               
-            ),
+            // ),
 
-            SizedBox(height: 28),
+            // SizedBox(height: 28),
 
-            CardSetting(
-              title: "Sobre",
-              icon: Icons.info,
+            // CardSetting(
+            //   title: "Sobre",
+            //   icon: Icons.info,
               
+            // ),
+
+            Text(
+              "EM BREVE...",
+              style: TextStyle(
+                color: ColorsApp.textColor,
+                fontSize: 49,
+                fontWeight: FontWeight(1000) 
+              ),
             ),
 
           ],

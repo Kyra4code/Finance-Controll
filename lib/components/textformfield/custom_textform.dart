@@ -6,7 +6,7 @@ import '../../assets/style/colors/colors_app.dart';
 
 //Estilizacao feita pelo Clude pq tava com preguica (FALO MESMO)
 
-class CustomTextform extends StatelessWidget{
+class CustomTextform extends StatefulWidget{
 
   final String title;
   final String subTitle;
@@ -14,48 +14,56 @@ class CustomTextform extends StatelessWidget{
   final Icon? icons;
   final TextEditingController? valueTextInput;
 
-  CustomTextform({
+  const CustomTextform({
     super.key,
     required this.title,
     required this.subTitle,
     this.keyboardType = const TextInputType.numberWithOptions(decimal: true),
     this.icons = const Icon(Icons.attach_money),
-    this.valueTextInput
+    this.valueTextInput,
 
   });
 
+  @override
+  State<CustomTextform> createState() => _CustomTextformState();
+}
 
+class _CustomTextformState extends State<CustomTextform> {
+
+  late final TextEditingController _controller;
+
+  @override
   Widget build(BuildContext context){
 
     return TextFormField(
       style: const TextStyle(color: ColorsApp.textColor),
       cursorColor: ColorsApp.color_green,
-      keyboardType: keyboardType,
-      controller: valueTextInput,
+      keyboardType: widget.keyboardType,
+      controller: widget.valueTextInput,
 
       // aceita só dígitos, 1 separador (vírgula ou ponto) e até 2 casas decimais
-      inputFormatters: [
+      // inputFormatters: [
         
-        if(keyboardType == TextInputType.numberWithOptions(decimal: true))
-        FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
+      //   if(widget.keyboardType == TextInputType.numberWithOptions(decimal: true))
+      //   FilteringTextInputFormatter.allow(RegExp(r'^\d*[,.]?\d{0,2}')),
 
-      ],
+      // ],
 
-      validator: (value) {
-        final number = double.tryParse((value ?? '').replaceAll(',', '.'));
-        if (number == null || number <= 0) return 'Informe um valor válido';
-        return null;
-      },
+      // validator: (value) {
+      //   final number = double.tryParse((value ?? '').replaceAll(',', '.'));
+      //   if (number == null || number <= 0) return 'Informe um valor válido';
+      //   return null;
+      // },
       
       decoration: InputDecoration(
-        labelText: title,
+        labelText: widget.title,
         labelStyle: TextStyle(color: ColorsApp.textMuted),
         floatingLabelStyle: TextStyle(color: ColorsApp.color_green),
-        hintText: subTitle,
+        hintText: widget.subTitle,
         hintStyle: TextStyle(color: ColorsApp.textMuted),
         errorStyle: TextStyle(color: ColorsApp.red),
 
-        prefixIcon: icons,
+        prefixIcon: widget.icons,
         prefixIconColor: ColorsApp.textMuted,
 
         filled: true,
@@ -89,6 +97,5 @@ class CustomTextform extends StatelessWidget{
       ),
     );
   }
-
 }// FilteringTextInputFormatter
 

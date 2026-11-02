@@ -9,12 +9,16 @@ class CardMoneyControll extends  StatefulWidget {
   final String title;
   final IconData icon;
   final String subtitle;
+  bool state_item;
+  ValueChanged<bool?> onChanged;
 
-   const CardMoneyControll({
+  CardMoneyControll({
      super.key,
      required this.title,
      required this.icon,
      required this.subtitle,
+     required this.state_item,
+     required this.onChanged,
    });
 
   @override
@@ -22,7 +26,6 @@ class CardMoneyControll extends  StatefulWidget {
 }
 
 class _CardMoneyControllState extends State<CardMoneyControll> {
-  bool onPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +56,8 @@ class _CardMoneyControllState extends State<CardMoneyControll> {
               Checkbox(
                 checkColor: ColorsApp.textColor,
                 focusColor: ColorsApp.textColor,
-                value: onPressed,
-                onChanged: (value){
-                  setState((){
-                    onPressed = value!;
-                  });
-                },
+                value: widget.state_item,
+                onChanged:widget.onChanged
               ),
 
               SizedBox(width: 10),

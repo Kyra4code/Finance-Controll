@@ -53,7 +53,86 @@ class Firebase_config {
 
   }
 
-}
+  Future<DataSnapshot?> getData_expense_edit(String uid, String? key_item) async{
 
+    final ref = rtdb.ref('gastos/$uid/$key_item');
+
+    DataSnapshot data_expense = await ref.get();
+
+    return data_expense;
+
+  }
+
+  Future<String> delete_expense_edit(String uid, String? key_item)async{
+
+    try{
+
+      final ref = rtdb.ref('gastos/$uid/$key_item');
+
+      await ref.remove();
+
+      return "O gasto foi deletado com sucesso!";
+    }
+    on FirebaseException catch (e){
+
+      return "Erro no banco de dados. Tente novamente ($e)";
+    }
+    catch(e){
+      return "Um erro inesperado aconteceu. Tente novamente!";
+
+    }
+
+  }
+
+  Future<String> update_expense(String uid, String? key_item, Map<String, dynamic> value)async{
+
+    try{
+
+      final ref = rtdb.ref("gastos/$uid/$key_item");
+
+      await ref.update(value);
+
+      return "Gasto atualizado com sucesso !";
+
+    }
+    on FirebaseException catch(e){
+      return "Erro no banco de dados. Tente novamente ($e)";
+    }
+    catch(e){
+      return "Um erro inesperado aconteceu. Tente novamente!";
+
+    }
+  }
+
+  Future<String> update_paid(String uid, String uid_item, Map<String, dynamic> state_trade)async{
+    try{
+
+      final ref = rtdb.ref("gastos/$uid/$uid_item");
+
+      await ref.update(state_trade);
+
+      bool? data_state; 
+
+      data_state = state_trade.entries.map((e) => data_state).first;
+
+      if(data_state == false){
+         return "Gasto agora esta como nao pago !";
+      }
+      else{
+        return "Gasto mudado para pago com sucesso !";
+      }
+
+    }
+    on FirebaseException catch(e){
+      return "Erro no banco de dados. Tente novamente ($e)";
+    }
+    catch(e){
+      return "Um erro inesperado aconteceu. Tente novamente!";
+
+    }
+
+  }
+
+}
 
 

@@ -17,10 +17,9 @@ import '../assets/style/colors/colors_app.dart';
 
 class MainPage extends StatelessWidget {
 
-  final int bold_style = 1000;
+  final double total_expenses = 400;
 
-  final double total_expenses = 200;
-  final double total_wage = 1449.98;
+  final double total_wage = 1049.98;
  
   const MainPage({super.key});
 
@@ -159,35 +158,45 @@ class MainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-              Text(
-                "Controle financeiro mensal",
-                style: TextStyle(
-                  color: ColorsApp.textColor,
-                  fontSize: 29,
-                  fontWeight: FontWeight(bold_style) 
-                ),
-              ),
+
+              // Text(
+              //   "Controle financeiro mensal",
+              //   style: TextStyle(
+              //     color: ColorsApp.textColor,
+              //     fontSize: 29,
+              //     fontWeight: FontWeight(bold_style) 
+              //   ),
+              // ),
             
               SizedBox(height: 5),
 
-              CustomPyChart(
-                items: [
-                  PyChartItem(
-                    title: "Sobra do mes", 
-                    value: total_wage, 
-                    color: ColorsApp.color_green, 
-                    textColor: ColorsApp.textColor
-                  ),
+              // CustomPyChart(
+              //   items: [
+              //     PyChartItem(
+              //       title: "${total_wage.toStringAsFixed(2)} R\$",
+              //       value: total_wage,
+              //       color: ColorsApp.color_green,
+              //       textColor: ColorsApp.textColor,
+              //     ),
 
-                  PyChartItem(
-                    title: "Gastos no mes", 
-                    value: total_expenses, 
-                    color: ColorsApp.red, 
-                    textColor: ColorsApp.textColor
-                  )
+              //     PyChartItem(
+              //       title: '${total_expenses.toStringAsFixed(2)} R\$',
+              //       value: total_expenses,
+              //       color: ColorsApp.red,
+              //       textColor: ColorsApp.textColor,
+              //     )
 
-                ],
+              //   ],
 
+              // ),
+
+              Text(
+                "EM BREVE...",
+                style: TextStyle(
+                  color: ColorsApp.textColor,
+                  fontSize: 49,
+                  fontWeight: FontWeight(1000) 
+                ),
               ),
 
             

@@ -25,7 +25,8 @@ class _AddExpensesState extends State<AddExpenses> {
   Map<String, dynamic> get data => {
     "data": dateSelected?.toIso8601String().split('T').first,
     "gasto": double.parse(expensesValue.text.replaceAll(',', '.')),
-    "nome": nameExpenses.text
+    "nome": nameExpenses.text,
+    "pago": false
   };
 
   final expensesValue = TextEditingController();
@@ -33,6 +34,7 @@ class _AddExpensesState extends State<AddExpenses> {
   final nameExpenses = TextEditingController();
 
   DateTime? dateSelected = DateTime.now();
+
 
     //Metodo para ativar o showDatePicker
     Future<void> _showDatePicker()async{
@@ -73,6 +75,32 @@ class _AddExpensesState extends State<AddExpenses> {
   @override
   Widget build(BuildContext context){
 
+    Future<void> save_expense()async{
+
+      try{
+
+        if(nameExpenses.text == "" || expensesValue.text == ""){
+
+          _showMessage("Por favor, Preencha todos os campos para salvar !");
+          print("Por favor, Preencha todos os campos para salvar !");
+
+        }
+
+        final response = await Firebase_config().saveExpenses(user_data?.uid, data);
+
+        _showMessage(response);
+        print(response);
+
+        Navigator.of(context).pop();
+
+        }
+
+      catch(e){
+        print("Error catch: $e");
+      }
+
+
+    }
     //Renderizacao da tela:
     return Scaffold(
 
@@ -148,24 +176,8 @@ class _AddExpensesState extends State<AddExpenses> {
                 CustomButton(
                   stateTrue: true, 
                   title: "Adicionar",
-                  onPress: ()async{
-                    try{
-
-                      final response = await Firebase_config().saveExpenses(user_data?.uid, data);
-                      print(response);
-                      _showMessage(response);
-                      Navigator.of(context).pop();
-
-                    }
-                    catch(e){
-                      print(e);
-                      _showMessage("Erro ao tentar salvar: $e");
-
-                    }
-
-                  } ,
+                  onPress: () async=> await save_expense(),
                 )
-
               ],
             ),
           ),
